@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "Citation is appreciated and voluntary. Choose MIT OR Apache-2.0 as described in LICENSE."
+type: software
+title: "CTLux: project files to Radiance scenes"
+authors:
+  - given-names: "James"
+    family-names: "Augustus"
+repository-code: "https://github.com/JamesAugustus/ctlux-core"
+version: "0.1"
+license:
+  - MIT
+  - Apache-2.0
+keywords:
+  - Radiance
+  - lighting simulation
+  - file conversion
+  - photometry
+  - disability glare

@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CTScene v1: metre / Z-up ortak scene",
+  "$comment": "This document defines the structural contract. JSON Schema cannot fully validate array length ratios, divisibility of xyz and triangle arrays by three, f/m indices against their related table bounds, unique light IDs, unit direction norms, finite numbers, or source/texture paths staying within actual project boundaries. core/scene_model.py validate_scene(scene) is the authoritative runtime validator. Source paths are additionally resolved during scene_from_project. Application source/triangle quotas are not permanent schema format limits. original preserves original JSON metadata. The packaging layer controls transfer/privacy policy for any legacy absolute paths.",
+  "type": "object",
+  "required": ["schema", "version", "units", "up_axis", "name", "mesh", "lights", "warnings"],
+  "properties": {
+    "schema": {"const": "ctlux.scene"},
+    "version": {"const": 1, "type": "integer"},
+    "units": {"const": "m"},
+    "up_axis": {"const": "Z"},
+    "name": {"type": "string"},
+    "mesh": {"$ref": "#/$defs/mesh"},
+    "lights": {"type": "array", "items": {"$ref": "#/$defs/light"}},
+    "camera": {"$ref": "#/$defs/camera"},
+    "warnings": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": {"$ref": "#/$defs/jsonValue"},
+  "allOf": [{"if": {"properties": {"mesh": {"properties": {"f": {"maxItems": 0}}}}},
+             "then": {"properties": {"lights": {"minItems": 1}}}}],
+  "$defs": {
+    "camera": {
+      "type": "object",
+      "required": [
+        "type",
+        "position",
+        "direction",
+        "up",
+        "yfov_degrees",
+        "aspect_ratio",
+        "znear",
+        "zfar"
+      ],
+      "properties": {
+        "type": {
+          "const": "perspective"
+        },
+        "position": {
+          "$ref": "#/$defs/vector3"
+        },
+        "direction": {
+          "$ref": "#/$defs/vector3"
+        },
+        "up": {
+          "$ref": "#/$defs/vector3"
+        },
+        "yfov_degrees": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 179
+        },
+        "aspect_ratio": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 10000
+        },
+        "znear": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "zfar": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      },
+      "description": "Optional active perspective camera. Coordinates use meters and Z-up. The vertical field of view is in degrees. The runtime validator also checks finiteness, direction/up independence, and far>near."
+    },
+    "jsonValue": {
+      "anyOf": [
+        {"type": ["null", "boolean", "string", "number"]},
+        {"type": "array", "items": {"$ref": "#/$defs/jsonValue"}},
+        {"type": "object", "additionalProperties": {"$ref": "#/$defs/jsonValue"}}
+      ]
+    },
+    "metadata": {"type": "object", "additionalProperties": {"$ref": "#/$defs/jsonValue"}},
+    "numberArray": {"type": "array", "items": {"type": "number"}},
+    "vector3": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number"}},
+    "nonnegativeVector3": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number", "minimum": 0}},
+    "size2": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number", "minimum": 0}},
+    "relativePath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?![/\\\\])(?!.*:)(?!.*(?:^|[/\\\\])\\.\\.(?:[/\\\\]|$)).+$",
+      "description": "Path relative to the project root. Contains no absolute path, drive/URI prefix, or .. component. The builder checks symbolic links."
+    },
+    "material": {
+      "type": "object",
+      "required": ["name", "color"],
+      "properties": {
+        "name": {"type": "string"},
+        "color": {"$ref": "#/$defs/nonnegativeVector3", "description": "Linear RGB base color."},
+        "texture": {"$ref": "#/$defs/relativePath"}
+      },
+      "additionalProperties": {"$ref": "#/$defs/jsonValue"}
+    },
+    "mesh": {
+      "type": "object",
+      "required": ["v", "f", "m", "uv", "uv_ok", "materials"],
+      "properties": {
+        "v": {"$ref": "#/$defs/numberArray", "minItems": 0, "description": "Flat xyz array in meters with Z-up and the world transform applied."},
+        "f": {"type": "array", "minItems": 0, "items": {"type": "integer", "minimum": 0}, "description": "Vertex indices in triples."},
+        "m": {"type": "array", "minItems": 0, "items": {"type": "integer", "minimum": 0}, "description": "One material index per vertex."},
+        "uv": {"$ref": "#/$defs/numberArray", "minItems": 0, "description": "Two UV numbers per vertex. Missing UVs use zero padding and uv_ok=0."},
+        "uv_ok": {"type": "array", "minItems": 0, "items": {"type": "integer", "enum": [0, 1]}},
+        "normals": {"$ref": "#/$defs/numberArray", "minItems": 3, "description": "Optional array with three normal components per vertex."},
+        "materials": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/material"}}
+      },
+      "additionalProperties": {"$ref": "#/$defs/jsonValue"}
+    },
+    "intensity": {
+      "type": "object",
+      "required": ["value", "unit", "provenance"],
+      "properties": {
+        "value": {"type": "number", "minimum": 0},
+        "unit": {"enum": ["relative", "cd"]},
+        "provenance": {"type": "string"}
+      },
+      "description": "relative is not physical candela. The IES dimmer is a relative multiplier. The profile must be transferred separately. Use cd only when the physical unit is actually known.",
+      "additionalProperties": {"$ref": "#/$defs/jsonValue"}
+    },
+    "light": {
+      "type": "object",
+      "required": ["id", "name", "position", "direction", "type", "color_linear", "enabled", "cone_angle_degrees", "radius_m", "size_m", "intensity", "source", "original"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "name": {"type": "string"},
+        "position": {"$ref": "#/$defs/vector3"},
+        "direction": {"$ref": "#/$defs/vector3", "description": "Unit emission direction in world space."},
+        "type": {"enum": ["point", "spot", "area", "distant"]},
+        "color_linear": {"$ref": "#/$defs/nonnegativeVector3"},
+        "enabled": {"type": "boolean"},
+        "cone_angle_degrees": {"type": "number", "minimum": 0, "maximum": 180},
+        "radius_m": {"type": "number", "minimum": 0},
+        "size_m": {"$ref": "#/$defs/size2"},
+        "intensity": {"$ref": "#/$defs/intensity"},
+        "source": {"$ref": "#/$defs/metadata", "description": "Source/product/array IDs and links within the project."},
+        "original": {"$ref": "#/$defs/metadata", "description": "Deep copy of the original light record, including unknown metadata values."}
+      },
+      "additionalProperties": {"$ref": "#/$defs/jsonValue"}
+    }
+  }
+}

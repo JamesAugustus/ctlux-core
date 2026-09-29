@@ -1,0 +1,65 @@
+# SPDX-License-Identifier: MIT OR Apache-2.0
+# Copyright (C) 2026 James Augustus
+# CTLux temel malzeme şablonları
+# Bir malzemeyi kopyala, adını değiştir, RGB, parlaklık ve pürüz değerlerini ayarla
+# RGB aralığı 0..1, parlaklık 0..0.1, pürüz 0..0.1
+
+void plastic beyaz_boya
+0
+0
+5 0.85 0.85 0.85 0 0
+
+void plastic sicak_beyaz_siva
+0
+0
+5 0.80 0.76 0.68 0 0
+
+void plastic beton
+0
+0
+5 0.50 0.50 0.50 0 0.05
+
+void plastic mermer_beyaz
+0
+0
+5 0.75 0.74 0.70 0.03 0.02
+
+void plastic tas_bej
+0
+0
+5 0.55 0.48 0.38 0 0.08
+
+void plastic asfalt
+0
+0
+5 0.08 0.08 0.08 0 0.1
+
+void plastic ahsap
+0
+0
+5 0.45 0.30 0.18 0.02 0.05
+
+void metal aluminyum
+0
+0
+5 0.65 0.65 0.68 0.9 0.05
+
+void metal paslanmaz
+0
+0
+5 0.75 0.75 0.75 0.95 0.02
+
+void glass cam
+0
+0
+3 0.72 0.72 0.72
+
+void trans buzlu_cam
+0
+0
+7 0.7 0.7 0.7 0.05 0.02 0.6 0.2
+
+void plastic yesil_cim
+0
+0
+5 0.10 0.30 0.08 0 0.1

@@ -1,0 +1,5 @@
+{ SPDX-License-Identifier: MIT OR Apache-2.0 }
+{ Copyright (C) 2026 James Augustus }
+{ obj2mesh UV koordinatlarını colorpict için eşler. "tmesh.cal u v" biçimi argüman hatası verir. }
+tex_u = frac(Lu);
+tex_v = frac(Lv);

@@ -1,0 +1,65 @@
+# SPDX-License-Identifier: MIT OR Apache-2.0
+# Copyright (C) 2026 James Augustus
+# CTLux basic material templates
+# Copy a material, rename it, and adjust RGB, specularity and roughness
+# RGB range 0..1, specularity 0..0.1, roughness 0..0.1
+
+void plastic white_paint
+0
+0
+5 0.85 0.85 0.85 0 0
+
+void plastic warm_white_plaster
+0
+0
+5 0.80 0.76 0.68 0 0
+
+void plastic concrete
+0
+0
+5 0.50 0.50 0.50 0 0.05
+
+void plastic white_marble
+0
+0
+5 0.75 0.74 0.70 0.03 0.02
+
+void plastic beige_stone
+0
+0
+5 0.55 0.48 0.38 0 0.08
+
+void plastic asphalt
+0
+0
+5 0.08 0.08 0.08 0 0.1
+
+void plastic wood
+0
+0
+5 0.45 0.30 0.18 0.02 0.05
+
+void metal aluminium
+0
+0
+5 0.65 0.65 0.68 0.9 0.05
+
+void metal stainless_steel
+0
+0
+5 0.75 0.75 0.75 0.95 0.02
+
+void glass glass
+0
+0
+3 0.72 0.72 0.72
+
+void trans frosted_glass
+0
+0
+7 0.7 0.7 0.7 0.05 0.02 0.6 0.2
+
+void plastic green_grass
+0
+0
+5 0.10 0.30 0.08 0 0.1
