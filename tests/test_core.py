@@ -158,7 +158,7 @@ class LimitTest(unittest.TestCase):
             importer.harvest_evo_products
 
     def test_language_packages_use_one_source_root(self):
-        roots = [ROOT, ROOT/'Turkish'/'source']
+        roots = [ROOT, ROOT/'tr']
         code = """from pathlib import Path
 import sys
 import core

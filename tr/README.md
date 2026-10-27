@@ -1,11 +1,17 @@
-# Türkçe kaynak kod ve testler
+# CTLux Core
+
+[English](../README.md)
+
+CTLux, desteklenen Lumion 10 ve DIALux evo proje kayıtlarını Radiance sahnelerine dönüştürür. Ürün fotometrisini çıkarır ve yaşa bağlı kamaşmayı inceler.
+
+[Teknik kılavuz](md/CTLUX_CORE.md) kurulum, komutlar, biçimler, API örnekleri ve sınırları açıklar. [Kaynak kod](core/) ve [testler](tests/) bu dil ağacındadır.
 
 Bu klasörde CTLux Core kaynak kodunun ve sentetik testlerinin Türkçe sürümü bulunur.
 Ana İngilizce sürüm depo kökündeki `core/` ve `tests/` klasörlerindedir
 
 ## Çalıştırma
 
-Komutları bu `Turkish/source` klasöründen çalıştırın
+Komutları bu `tr` klasöründen çalıştırın
 
 ```bash
 python3 -B -m core --help
@@ -29,4 +35,4 @@ Gerçek projelerin bütün ayrıntılarının aktarılacağını veya ölçümle
 
 ## Lisans
 
-Kaynak kod ve testler depo kökündeki [MIT](../../LICENSE-MIT) veya [Apache 2.0](../../LICENSE-APACHE) lisansı seçenekleriyle sunulur
+Kaynak kod ve testler depo kökündeki [MIT](../LICENSE-MIT) veya [Apache 2.0](../LICENSE-APACHE) lisansı seçenekleriyle sunulur

@@ -1,12 +1,12 @@
 # CTLux: proje dosyalarından Radiance sahnesine
 
-[Türkçe kaynak kod ve testler](source/README.md)
+[Türkçe kaynak kod ve testler](../README.md)
 
 Ana İngilizce sürüm depo kökündeki `core/` ve `tests/` klasörlerindedir.
-Bu sayfadaki Türkçe çıktı ve API adları için komutları `Turkish/source` klasöründen çalıştırın.
+Bu sayfadaki Türkçe çıktı ve API adları için komutları `tr` klasöründen çalıştırın.
 Türkçe testler bu klasördeki Türkçe `core` paketiyle çalışır
 
-English: [README.md](../README.md).
+English: [README.md](../../md/CTLUX_CORE.md).
 
 CTLux, desteklenen Lumion® 10 ve DIALux evo proje kayıtlarını Radiance
 sahnelerine dönüştürür. Bu depo, CTLux’un komut satırından çalışan çekirdeğini içerir.
@@ -53,7 +53,7 @@ Ayar dosyası varsa salt okunur olarak `radiance_bin` ve `raypath` için okunur:
 kökünün (`core/` klasörünü içeren klasör) altında `ayarlar/ayar.json`.
 Ortamdaki `RADIANCE_BIN` bu dosyadaki `radiance_bin` değerinden önce gelir.
 
-Komutları `Turkish/source` klasöründen çalıştırın:
+Komutları `tr` klasöründen çalıştırın:
 
 ```sh
 export PYTHONDONTWRITEBYTECODE=1
@@ -503,7 +503,7 @@ Buradaki `-av`, ışıksız üçgeni görmek için taslak ortam katkısıdır, a
 `engine` üzerinden sentetik bir zemin ve IES ışığı derlenip 64×43 piksel çizildi,
 görüntü boş değildi.
 
-Sentetik ürün örneği (`Turkish/source` klasöründen):
+Sentetik ürün örneği (`tr` klasöründen):
 
 ```sh
 python3 -B - <<'PYTHON'
@@ -544,8 +544,8 @@ Yöntem notları:
   https://github.com/JamesAugustus/ctlux-evo
 
 Lisans: MIT Lisansı veya Apache Lisansı 2.0 seçeneklerinden birini seçebilirsiniz
-(`MIT OR Apache-2.0`). Bkz. [LICENSE](../LICENSE), [LICENSE-MIT](../LICENSE-MIT)
-ve [LICENSE-APACHE](../LICENSE-APACHE). İki seçenek de ticari kullanıma,
+(`MIT OR Apache-2.0`). Bkz. [LICENSE](../../LICENSE), [LICENSE-MIT](../../LICENSE-MIT)
+ve [LICENSE-APACHE](../../LICENSE-APACHE). İki seçenek de ticari kullanıma,
 değiştirmeye ve kaynak kodu kapalı ürünlerde dağıtıma izin verir.
 İkisi de kaynak kodunuzu yayımlamanızı gerektirmez.
 
@@ -553,12 +553,12 @@ MIT seçildiğinde yazılımın bütün kopyalarında veya önemli bölümlerind
 izin bildirimi korunur. Apache 2.0 seçildiğinde yeniden dağıtımda lisansın bir
 kopyası verilir, değiştirilen dosyalara belirgin değişiklik bildirimleri eklenir,
 dağıtılan kaynakta ilgili telif, patent, marka ve atıf bildirimleri korunur.
-İlgili [NOTICE](../NOTICE) atıfları bölüm 4'ün izin verdiği biçimlerden biriyle
+İlgili [NOTICE](../../NOTICE) atıfları bölüm 4'ün izin verdiği biçimlerden biriyle
 sunulur. Apache NOTICE yükümlülüğü Apache 2.0 seçildiğinde geçerlidir.
 MIT seçimi Apache koşullarını getirmez.
 
 İki seçenek de kullanıcı arayüzünde isim gösterilmesini veya akademik atfı
-zorunlu kılmaz. [CITATION.cff](../CITATION.cff) ile atıf yapılması takdir edilir
+zorunlu kılmaz. [CITATION.cff](../../CITATION.cff) ile atıf yapılması takdir edilir
 ve isteğe bağlıdır. Bu lisanslar özgün CTLux kodunu ve belgelerini kapsar.
 Harici araçlar ve kullanıcının sağladığı proje veya fotometri verileri kendi
 koşullarına tabidir.
